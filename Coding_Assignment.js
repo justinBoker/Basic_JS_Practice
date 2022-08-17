@@ -100,9 +100,31 @@ let isFirstArrayGreater = (array1, array2) => {
     }
     let average1 = sum1 / array1.length;
     let average2 = sum2 / array2.length;
-    console.log(average1 > average2);
+    return average1 > average2; // This will need to be reverted back to console.log(average1 > average 2);
 };
 isFirstArrayGreater([5, 8, 2], [1, 2, 5]);
+let isFirstArrayGreater2 = (array1, array2) => {
+    // let sum1 = 0;
+    // let sum2 = 0;
+    // for(let value1 of array1) {
+    //     sum1 += value1;
+    // }
+    // for(let value2 of array2) {
+    //     sum2 += value2;
+    // }
+    // let average1 = sum1 / array1.length;
+    // let average2 = sum2 / array2.length;
+    if(figureAverage(array1) > figureAverage(array2)) {
+        console.log(figureAverage(array1));
+        console.log(figureAverage(array2));
+        return true;
+    } else {
+        console.log(figureAverage(array1));
+        console.log(figureAverage(array2));
+        return false;
+    }
+};
+console.log(isFirstArrayGreater2([5, 8, 2], [1, 2, 5]));
 
 // Coding Step 12.
 let willBuyDrink = (isHotOutside, moneyInPocket) => {
@@ -111,3 +133,47 @@ let willBuyDrink = (isHotOutside, moneyInPocket) => {
 willBuyDrink(false, 10.51);
 
 // Coding Step 13.
+// My function takes a number and returns the number and type of coins needed to create that amount.
+// I decided to create this function because I thought that it would be an interesting challenge.
+
+let quarter = 25;
+let dime = 10;
+let nickel = 5;
+let penny = 1;
+
+let amountToCoins = amount => {
+    if(amount > 0) {
+        let quarters = (amount / quarter) >> 0;
+        let dimes = ((amount - (quarter * quarters)) / dime) >> 0;
+        let nickels = (((amount - (quarter * quarters)) - (dime * dimes)) / nickel) >> 0;
+        let pennies = ((((amount - (quarter * quarters)) - (dime * dimes)) - (nickel * nickels)) / penny) >> 0;
+        if(quarters == '1') {
+            var qString = 'quarter';
+        } else {
+            qString = 'quarters';
+        }
+        if(dimes == '1') {
+            var dString = 'dime';
+        } else {
+            dString = 'dimes';
+        }
+        if(nickels == '1') {
+            var nString = 'nickel';
+        } else {
+            nString = 'nickels';
+        }
+        if(pennies == '1') {
+            var pString = 'penny';
+        } else {
+            pString = 'pennies';
+        }
+        
+        console.log(`You need ${quarters} ${qString}, ${dimes} ${dString}, ${nickels} ${nString}, and ${pennies} ${pString}.`);
+    } else if(amount == 0) {
+        console.log("No coins needed.");
+    } else {
+        console.log("Invalid amount");
+    }
+};
+
+amountToCoins(15041);
